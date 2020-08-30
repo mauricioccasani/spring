@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+
+		<form action="#" th:action="@{/buscar}" th:object="${proveedor}"
+			method="post">
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<label for="nombre">Nombre</label> <input type="text"
+						placeholder="Nombre" id="nombre" th:field="*{nombre}"> <input
+						type="submit" value="Buscar" name="buscar">
+						<a type="submit" class="btn btn-primary"  th:href="@{/registrar}" >Nuevo</a>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="buscar_proveedor" th:text="'Buscar proveedor'"></label>
+					<input type="text" placeholder="Nombre" id="buscar_proveedor"
+						name="buscar_proveedor">
+				</div>
+
+			</div>
+			<hr>
+			<table style="width: 100%" class="table">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>dni</th>
+						<th>nombre</th>
+						<th>direccion</th>
+						<th>telefono</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="pro : ${proveedors}">
+						<td th:text="${pro.id}"></td>
+						<td th:text="${pro.dni}"></td>
+						<td th:text="${pro.nombre}"></td>
+						<td th:text="${pro.direccion}"></td>
+						<td th:text="${pro.telefono}"></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+		<form th:action="@{/serch}">
+			<input type="text" name="term"/> 
+			<input type="submit" value="Test" />
+		</form>
+	</div>
+	<script th:src="@{/webjars/jquery/3.5.1/dist/jquery.min.js}"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+	<script th:replace="jsproveedor/auto_complit :: javascript"></script>
+
+</body>
+</html>
